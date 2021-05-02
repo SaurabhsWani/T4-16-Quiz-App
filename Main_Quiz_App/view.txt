@@ -1,0 +1,13 @@
+# answer=request.POST.getlist('answer',None)
+# questiont=request.POST.getlist('questiont',None)
+# tp=request.POST.getlist('tp',None)
+        # questiontst=[]
+        # for i in range(len(questiont)):
+        #     questiontt=[]
+        #     questiontt.append(questiont[i])
+        #     print('Question: '+questiont[i])
+        #     questiontt.append(tp[i])
+        #     print('Type: '+tp[i])
+        #     questiontt.append(answer[i])
+        #     print('Answer: '+answer[i])
+        #     questiontst.append(questiontt)

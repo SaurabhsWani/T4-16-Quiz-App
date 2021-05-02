@@ -1,0 +1,22 @@
+{% extends 'common.html' %}
+{% block content %}
+
+{% comment %} <img src="{{x.img.url}}" weight=200px height=200px > {% endcomment %}
+
+
+<button type="button" name="add" id="addcheckbox" class="btn btn-success">Add checkbox</button>
+<button type="button" name="add" id="addradio" class="btn btn-success">Add radio</button>
+{% comment %} <button type="button" name="add" id="addtextarea" class="btn btn-success">Add textarea</button>
+<button type="button" name="add" id="add" class="btn btn-success">Add single line input</button> {% endcomment %}
+<br/><br/><br/>
+<form action="add" method="POST" name="add_name" id="add_name" >
+    {% csrf_token %}
+    <h4> {{formtitl}} </h4>
+    <input type="hidden" name="Formname" value="{{formtitl}}" />
+    <div class="table">
+        <table style="border: none; border-collapse: collapse;" id="dynamic_field" width="100%">
+        </table>
+    </div>
+</form>
+<br/>
+{% endblock content %}

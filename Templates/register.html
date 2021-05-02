@@ -1,0 +1,58 @@
+{% extends 'baseforlogin-register.html' %}
+{% block content %}
+    <div class="myform form ">
+      <div class="logo mb-3">
+        <div class="col-md-12 text-center">
+          <h1>Create Faculty Account</h1>
+        </div>
+      </div>      
+    <div>
+      {% for message in messages %}
+      <h3 style="text-decoration-color: red;" >{{message}}</h3>
+      {% endfor %}
+    </div>
+      <!-- registration form -->
+      <form action="register" name="registration" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputEmail1">First Name</label>
+          <input type="text" name="first_name" class="form-control" id="firstname" aria-describedby="emailHelp"
+            placeholder="Enter Firstname">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Last Name</label>
+          <input type="text" name="last_name" class="form-control" id="lastname" aria-describedby="emailHelp"
+            placeholder="Enter Lastname">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Username</label>
+          <input type="text" name="username" class="form-control" id="lastname" aria-describedby="emailHelp"
+            placeholder="Enter Username">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+            placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Password</label>
+          <input type="password" name="password1" id="password" class="form-control" aria-describedby="emailHelp"
+            placeholder="Enter Password">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Password</label>
+          <input type="password" name="password2" id="password" class="form-control" aria-describedby="emailHelp"
+            placeholder="Confirm Password">
+        </div>
+        <div class="col-md-12 text-center mb-3">
+          <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Sign Up</button>
+        </div>
+        <div class="col-md-12 ">
+          <div class="form-group">
+            <p class="text-center">Already have an account?<a href="/login" id="signin">Faculty Login!</a> | 
+            <a href="/loginstd" id="signin">Student Login!</a></p>
+          </div>
+        </div>
+    </div>
+    </form>
+{% endblock content %}

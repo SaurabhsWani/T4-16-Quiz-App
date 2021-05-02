@@ -1,0 +1,56 @@
+{% extends 'common.html' %}
+{% block foruser %}
+<div id="content-wrapper" class="d-flex flex-column bg-gradient-light">
+<div id="content "><br>
+<div class="container-fluid">
+
+<form action="#" method="POST" name="add_name" id="add_name" >
+    {% csrf_token %}
+<div class="col-md-6 h4 ml-auto mr-auto" style="text-transform: uppercase;"><center> {{Formname.0.Form_name}} </center></div>
+{% for x in USerForm %}
+    <div class="table col-md-5 ml-auto mr-auto bg-gradient-info " style="border-radius: 25px;"> 
+        <table style="border: none; border-collapse: collapse;" id="dynamic_field" width="100%">
+        {% if x.type == "radio" %}
+        <tr>
+        <td>
+        <div class="row mb-2 h4 text-white">{{x.question}}
+        </div><div class="row mb-2 text-white"><input type="radio" name='+i+' value="1" class="form-control col-1"/>
+        {{x.option1}}
+        </div><div class="row mb-2 text-white"><input type="radio" name='+i+' value="2" class="form-control col-1"/>
+        {{x.option2}}
+        </div><div class="row mb-2 text-white"><input type="radio" name='+i+' value="3" class="form-control col-1"/>
+        {{x.option3}}
+        </div><div class="row mb-2 text-white"><input type="radio" name='+i+' value="4" class="form-control col-1"/>
+        {{x.option4}}
+        </div>
+        </td>
+        </tr>
+        {% endif %}
+        {% if x.type == 'checkbox' %}
+        <tr>
+        <td>
+        <div class="row mb-2 h4 text-white">{{x.question}}
+        </div><div class="row mb-2 text-white 5"><input type="checkbox" name="'+i+'" value="1" class="form-control btn-sm col-1"/>
+        {{x.option1}}
+        </div>
+        <div class="row mb-2 text-white"><input type="checkbox" name="'+i+'" value="2" class="form-control col-1"/> 
+        {{x.option2}}
+        </div>
+        <div class="row mb-2 text-white">
+        <input type="checkbox" name="'+i+'" value="3" class="form-control col-1"/>
+        {{x.option3}}
+        </div><div class="row mb-2 text-white"><input type="checkbox" name="'+i+'" value="4" class="form-control col-1"/>
+        {{x.option4}}
+        </div>
+        </td>
+        </tr>
+        {% endif %}
+        
+        </table>
+    </div>
+{% endfor %}
+<div class="table col-md-5 ml-auto mr-auto mb-2"> 
+<input type="submit" class="btn btn-info btn-lg btn-block"  style="border-radius: 30px;" id="submit" value="submit" />
+</div>
+</form>
+{% endblock foruser %} 
