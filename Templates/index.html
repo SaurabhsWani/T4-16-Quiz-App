@@ -1,19 +1,18 @@
 {% extends 'common.html' %}
 {% block content %}
-
 <form action="Add_Forms" method="POST" name="add_name" id="add_name" >
     {% csrf_token %}
     <div class="p-2 col-md-6 ml-auto mr-auto">
-    <div class="text-center">
-        <h1 class="h5 text-gray-900 mb-3">Create New Form!</h1>
-    </div>
-    <div class="form-group ">    
-    <input type="text" name="Formname" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Form name">
-    {% for message in messages %}
-    <div class='text-danger'>{{message}}</div>
-    {% endfor %}
-    </div>
-    <input type="submit" class="btn btn-info btn-user btn-block" value="Creat" />
+        <div class="text-center">
+            <h1 class="h5 text-gray-900 mb-3">Create New Form!</h1>
+        </div>
+        <div class="form-group ">    
+            <input type="text" name="Formname" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Form name">
+            {% for message in messages %}
+            <div class='text-danger'>{{message}}</div>
+            {% endfor %}
+        </div>
+        <input type="submit" class="btn btn-info btn-user btn-block" value="Creat" />
     </div>
 </form>
 <hr/>
@@ -23,28 +22,28 @@
     </div>
 </div>
 <div class="row">
-{% for x in forms %}
-<div class="col-xl-4 col-md-6 mb-4">
-    <div class="card border-left-info shadow h-100 py-2">
-        <div class="card-body">
-            <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <a href="ViewForm?id={{x.id}}" target="_blank">
-                    <div class=" h5 font-weight-bold text-primary text-uppercase mb-1">{{x.Form_name}}</div>
-                    </a>
-                    <div class="text-xm mb-0 font-weight-bold text-gray-800">URL:
-                    <input type="text" value="http://127.0.0.1:8000/ViewForm?id={{x.id}}" id="myInput{{x.id}}">
+    {% for x in forms %}
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-bottom-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <a href="ViewForm?id={{x.Form_Url}}" target="_blank">
+                            <div class=" h5 font-weight-bold text-primary text-uppercase mb-1">{{x.Form_name}}</div>
+                        </a>
+                        <div class="text-xm mb-0 font-weight-bold text-gray-800">URL:
+                            <input type="text" value="http://127.0.0.1:8000/ViewForm?id={{x.Form_Url}}" id="myInput{{x.id}}">
+                        </div>
                     </div>
-                </div>
-                <div class="col-auto">
-                   <button onclick="myFunction('myInput{{x.id}}')" onmouseout="outFunc()" class="btn btn-sm" title="Copy Url">
-                   <i class="fas fa-copy fa-2x text-gray-900"></i>
-                   </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-{% endfor %}<br><hr>
+                    <div class="col-auto">
+                     <button onclick="myFunction('myInput{{x.id}}')" onmouseout="outFunc()" class="btn btn-sm" title="Copy Url">
+                         <i class="fas fa-copy fa-2x text-gray-900"></i>
+                     </button>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ {% endfor %}<br><hr>
 </div>
 {% endblock content %}

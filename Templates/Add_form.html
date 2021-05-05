@@ -3,20 +3,37 @@
 
 {% comment %} <img src="{{x.img.url}}" weight=200px height=200px > {% endcomment %}
 
-
-<button type="button" name="add" id="addcheckbox" class="btn btn-success">Add checkbox</button>
-<button type="button" name="add" id="addradio" class="btn btn-success">Add radio</button>
-{% comment %} <button type="button" name="add" id="addtextarea" class="btn btn-success">Add textarea</button>
-<button type="button" name="add" id="add" class="btn btn-success">Add single line input</button> {% endcomment %}
-<br/><br/><br/>
-<form action="add" method="POST" name="add_name" id="add_name" >
-    {% csrf_token %}
-    <h4> {{formtitl}} </h4>
-    <input type="hidden" name="Formname" value="{{formtitl}}" />
-    <div class="table">
-        <table style="border: none; border-collapse: collapse;" id="dynamic_field" width="100%">
-        </table>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Form Title: {{formtitl}}
+            <button type="button" name="add" id="addcheckbox" class="btn btn-info ml-auto btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-check-square"></i>
+                </span>
+                <span class="text"> Add Multi-Answer Question</span>
+            </button>
+            <button type="button" name="add" id="addradio" class="btn btn-info ml-auto btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-dot-circle"></i>
+                </span>
+                <span class="text">Add Single-Answer Question</span>
+            </button>
+            <button type="button" name="add" id="addtextareaa" class="btn btn-success" >Add textarea</button>
+            <button type="button" name="add" id="adda" class="btn btn-success">Add single line input</button>
+        </h6>
     </div>
-</form>
+    <div class="card-body">
+        <form action="Add" method="POST" name="add_name" id="add_name" >
+            {% csrf_token %}
+
+            <input type="hidden" name="Formname" value="{{formtitl}}" />
+            <div class="table">
+                <table style="border: none; border-collapse: collapse;" id="dynamic_field" width="100%">
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+
 <br/>
 {% endblock content %}
