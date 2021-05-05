@@ -1,56 +1,88 @@
 {% extends 'common.html' %}
 {% block foruser %}
 <div id="content-wrapper" class="d-flex flex-column bg-gradient-light">
-<div id="content "><br>
-<div class="container-fluid">
-
-<form action="#" method="POST" name="add_name" id="add_name" >
-    {% csrf_token %}
-<div class="col-md-6 h4 ml-auto mr-auto" style="text-transform: uppercase;"><center> {{Formname.0.Form_name}} </center></div>
-{% for x in USerForm %}
-    <div class="table col-md-5 ml-auto mr-auto bg-gradient-info " style="border-radius: 25px;"> 
-        <table style="border: none; border-collapse: collapse;" id="dynamic_field" width="100%">
-        {% if x.type == "radio" %}
-        <tr>
-        <td>
-        <div class="row mb-2 h4 text-white">{{x.question}}
-        </div><div class="row mb-2 text-white"><input type="radio" name='+i+' value="1" class="form-control col-1"/>
-        {{x.option1}}
-        </div><div class="row mb-2 text-white"><input type="radio" name='+i+' value="2" class="form-control col-1"/>
-        {{x.option2}}
-        </div><div class="row mb-2 text-white"><input type="radio" name='+i+' value="3" class="form-control col-1"/>
-        {{x.option3}}
-        </div><div class="row mb-2 text-white"><input type="radio" name='+i+' value="4" class="form-control col-1"/>
-        {{x.option4}}
-        </div>
-        </td>
-        </tr>
-        {% endif %}
-        {% if x.type == 'checkbox' %}
-        <tr>
-        <td>
-        <div class="row mb-2 h4 text-white">{{x.question}}
-        </div><div class="row mb-2 text-white 5"><input type="checkbox" name="'+i+'" value="1" class="form-control btn-sm col-1"/>
-        {{x.option1}}
-        </div>
-        <div class="row mb-2 text-white"><input type="checkbox" name="'+i+'" value="2" class="form-control col-1"/> 
-        {{x.option2}}
-        </div>
-        <div class="row mb-2 text-white">
-        <input type="checkbox" name="'+i+'" value="3" class="form-control col-1"/>
-        {{x.option3}}
-        </div><div class="row mb-2 text-white"><input type="checkbox" name="'+i+'" value="4" class="form-control col-1"/>
-        {{x.option4}}
-        </div>
-        </td>
-        </tr>
-        {% endif %}
-        
-        </table>
-    </div>
-{% endfor %}
-<div class="table col-md-5 ml-auto mr-auto mb-2"> 
-<input type="submit" class="btn btn-info btn-lg btn-block"  style="border-radius: 30px;" id="submit" value="submit" />
-</div>
-</form>
-{% endblock foruser %} 
+    <div id="content "><br>
+        <div class="container-fluid">
+            <input type="hidden" value="http://127.0.0.1:8000/ViewForm?id={{url}}" id="myInput0">
+            <form action="Save_Response" method="POST" name="add_name" id="add_name" >
+                {% csrf_token %}
+                <div class="col-md-6 h4 ml-auto mr-auto" style="text-transform: uppercase;"><center><b> {{Formname.0.Form_name}}</b>
+                    <button onclick="myFunction('myInput0')" onmouseout="outFunc()" class="btn btn-sm" title="Copy Url">
+                        <i class="fas fa-share-square fa-2x text-gray-900"></i>
+                    </button> </center>
+                </div>
+                <div class="col-md-6 h6 ml-auto mr-auto" style="text-transform: uppercase;"><center>
+                    {{ user.first_name }} {{ user.last_name }} | 
+                    <a href="logout" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>Logout</a>
+                    </center>
+                </div>
+                <input type='hidden' name='responsesendername' value="{{ user.first_name }} {{ user.last_name }}">
+                <input type='hidden' name='responsesender' value="{{ user.first_name }} {{ user.last_name }}">
+                <input type='hidden' name='Formid' value="{{Formname.0.id}}">
+                <input type='hidden' name='formname' value="{{Formname.0.Form_name}}">
+                <input type='hidden' name='createruserid' value="{{Formname.0.User_id}}">
+                {% for x in USerForm %}
+                <div class="table col-md-5 ml-auto mr-auto bg-gradient-info " style="border-radius: 25px;"> 
+                    <table style="border: none; border-collapse: collapse;" id="dynamic_field" width="100%">
+                        {% if x.type == "radio" %}
+                        <tr>
+                            <td>
+                                <div class="row mb-2 h4 text-white">{{x.question}}
+                                <input type="hidden" name="no" value="{{ forloop.counter }}">
+                                <input type="hidden" name="Questionid" value="{{ x.id }}">
+                                <input type="hidden" name="type" value="{{ x.type }}">
+                                </div><div class="row mb-2 text-white"><input type="radio" name="{{ forloop.counter }}" value="{{x.option1}}" class="form-control col-1"/>
+                                    {{x.option1}}
+                                </div><div class="row mb-2 text-white"><input type="radio" name="{{ forloop.counter }}" value="{{x.option2}}" class="form-control col-1"/>
+                                    {{x.option2}}
+                                </div>                                
+                {% if x.option3 != '' %} 
+                <div class="row mb-2 text-white"><input type="radio" name="{{ forloop.counter }}" value="{{x.option3}}" class="form-control col-1"/>
+                                    {{x.option3}}
+                                </div>
+                {% endif %}
+                {% if x.option4 != '' %} 
+                <div class="row mb-2 text-white">
+                <input type="radio" name="{{ forloop.counter }}" value="{{x.option4}}" class="form-control col-1"/>
+                                    {{x.option4}}
+                                </div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% if x.type == 'checkbox' %}
+                        <tr>
+                            <td>
+                                <div class="row mb-2 h4 text-white">{{x.question}}
+                                <input type="hidden" name="no" value="{{ forloop.counter }}">
+                                <input type="hidden" name="Questionid" value="{{ x.id }}">
+                                <input type="hidden" name="type" value="{{ x.type }}">
+                                </div><div class="row mb-2 text-white 5"><input type="checkbox" name="{{ forloop.counter }}" value="{{x.option1}}" class="form-control btn-sm col-1"/>
+                                    {{x.option1}}
+                                </div>
+                                <div class="row mb-2 text-white"><input type="checkbox" name="{{ forloop.counter }}" value="{{x.option2}}" class="form-control col-1"/> 
+                                    {{x.option2}}
+                                </div>
+                                {% if x.option3 != '' %} 
+                                <div class="row mb-2 text-white">
+                                    <input type="checkbox" name="{{ forloop.counter }}" value="{{x.option3}}" class="form-control col-1"/>
+                                    {{x.option3}}
+                                </div>
+                                {% endif %}
+                                {% if x.option4 != '' %} 
+                                <div class="row mb-2 text-white"><input type="checkbox" name="{{ forloop.counter }}" value="{{x.option4}}" class="form-control col-1"/>
+                                    {{x.option4}}
+                                </div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </table>
+                </div>
+                {% endfor %}
+                <div class="table col-md-5 ml-auto mr-auto mb-2"> 
+                    <input type="submit" class="btn btn-info btn-lg btn-block"  style="border-radius: 30px;" id="submit" value="submit" />
+                </div>
+            </form>
+            {% endblock foruser %} 

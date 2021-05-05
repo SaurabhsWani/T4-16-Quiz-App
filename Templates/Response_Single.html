@@ -1,0 +1,61 @@
+{% extends 'common.html' %}
+{% block content %}
+<div class="p-2 col-md-6 ml-auto mr-auto">
+    <div class="text-center">
+        <h1 class="h5 text-gray-900 mb-3">
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+        </h1>
+    </div>
+</div>
+{% for x in res %}
+<div class="card mb-4">
+    <div class='row card-body'>
+        <div class="col-xl-3 col-md-3 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                        Response By
+                                            <div class=" h5 font-weight-bold text-warning text-uppercase mb-1">
+                                                {{x.Response_User_id}}</div>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-700">{{x.Submit_Time}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        {% for z in x.Question%}
+            <div class="col-xl-3 col-md-3 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto font-weight-bold">
+                                {{forloop.counter}}
+                            </div>
+                            <div class="col ml-2">
+                            {% for y in z%}
+                                <div class=" font-weight-bold text-primary text-uppercase mb-1">
+                                    {% if forloop.counter == 1%}
+                                    <b>Question: </b>{{y}}
+                                    {% endif%}
+                                </div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                {% if forloop.counter == 2%}
+                                    <b>Answer/s: </b>{{y}}
+                                    {% endif%}</div>
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

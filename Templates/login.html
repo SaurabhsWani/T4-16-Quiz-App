@@ -3,32 +3,33 @@
 <div class="myform form ">
   <div class="logo mb-3">
     <div class="col-md-12 text-center">
-      <h1>Faculty Login</h1>
+      <h1>Faculty Login {{url}}</h1>
     </div>
   </div>
   <div>
     {% for message in messages %}
-    <h3 style="text-decoration-color: red;" >{{message}}</h3>
+    <span><h3 style="color:red;" >{{message}}</h3>
     {% endfor %}
   </div>
   <form action="login" method="post" name="login">
     {% csrf_token %}
+    <input type="hidden" name='url' value={{url}}>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input type="text" name="username" class="form-control" id="email" aria-describedby="emailHelp"
-        placeholder="Enter Username">
+      placeholder="Enter Username">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Password</label>
       <input type="password" name="password" id="password" class="form-control" aria-describedby="emailHelp"
-        placeholder="Enter Password">
+      placeholder="Enter Password">
     </div>
 
     <div class="col-md-12 text-center ">
       <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
     </div>
     <div class="form-group">
-      <p class="text-center"><br>Don't have account? <a href="/register" id="signup">Sign up For Faculty </a><br><a href="/registerstd" id="signup">Sign up For Student </a></p>
+      <p class="text-center"><br>Don't have account? <a href="/register" id="signup">Sign up!</a><br></p>
     </div>
   </form>
 </div>
