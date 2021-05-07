@@ -1,5 +1,6 @@
 {% extends 'common.html' %}
 {% block content %}
+
 <form action="Add_Forms" method="POST" name="add_name" id="add_name" >
     {% csrf_token %}
     <div class="p-2 col-md-6 ml-auto mr-auto">
@@ -8,7 +9,11 @@
         </div>
         <div class="form-group ">    
             <input type="text" name="Formname" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Form name">
-            {% for message in messages %}
+            {{questions}}
+{% for x in questions%}
+{{x}}
+{% endfor %}
+{% for message in messages %}
             <div class='text-danger'>{{message}}</div>
             {% endfor %}
         </div>
