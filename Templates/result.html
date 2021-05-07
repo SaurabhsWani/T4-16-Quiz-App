@@ -78,6 +78,34 @@
                             </td>
                         </tr>
                         {% endif %}
+                        {% if x.type == 'oneline' %}
+                        <tr>
+                            <td>
+                                <div class="row mb-2 h4 text-white">{{x.question}}
+                                <input type="hidden" name="no" value="{{ forloop.counter }}">
+                                <input type="hidden" name="Questionid" value="{{ x.id }}">
+                                <input type="hidden" name="type" value="{{ x.type }}">
+                                </div><div class="row mb-2 text-white 5"><input type="text" name="{{ forloop.counter }}" value="" class="form-control form-control-user" placeholder="Enter your Answer"/>
+                                    {{x.option1}}
+                                </div>
+                                
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% if x.type == 'textarea' %}
+                        <tr>
+                            <td>
+                                <div class="row mb-2 h4 text-white">{{x.question}}
+                                <input type="hidden" name="no" value="{{ forloop.counter }}">
+                                <input type="hidden" name="Questionid" value="{{ x.id }}">
+                                <input type="hidden" name="type" value="{{ x.type }}">
+                                </div><div class="row mb-2 text-white 5"><textarea type="text" name="{{ forloop.counter }}" value="" class="form-control form-control-user" rows='3' placeholder="Enter your Answer"></textarea>
+                                    {{x.option1}}
+                                </div>
+                                
+                            </td>
+                        </tr>
+                        {% endif %}
                     </table>
                 </div>
                 {% endfor %}

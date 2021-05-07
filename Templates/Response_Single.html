@@ -20,7 +20,7 @@
                                         Response By
                                             <div class=" h5 font-weight-bold text-warning text-uppercase mb-1">
                                                 {{x.Response_User_id}}</div>
-                                            <div class="h6 mb-0 font-weight-bold text-gray-700">{{x.Submit_Time}}</div>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-700">Submitted on:<br>{{x.Submit_Time}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -37,7 +37,7 @@
                             <div class="col-auto font-weight-bold">
                                 {{forloop.counter}}
                             </div>
-                            <div class="col ml-2">
+                            <div class="col ml-3">
                             {% for y in z%}
                                 <div class=" font-weight-bold text-primary text-uppercase mb-1">
                                     {% if forloop.counter == 1%}
