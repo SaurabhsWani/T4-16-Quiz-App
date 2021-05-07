@@ -54,7 +54,7 @@ def Add(request):
         formtitl=request.POST.get('Formname',None)        
         question=request.POST.getlist('question',None)
         typee=request.POST.getlist('type',None)
-        # answer=request.POST.getlist('answer',None)
+        answer=request.POST.getlist('answer',None)
         option1=request.POST.getlist('option1',None)
         option2=request.POST.getlist('option2',None)
         option3=request.POST.getlist('option3',None)
@@ -69,25 +69,19 @@ def Add(request):
         #getting form id
         USerForm = Formtitle.objects.filter(Form_name =formtitl,User_id=user_id)
         formid=USerForm[0]        
-        questions=[]
         #formatting questions
         for i in range(len(question)):
-            questionn=[]
-            questionn.append(question[i])
-            questionn.append(typee[i])
-            noo=request.POST.getlist(no[i],None)
-            questionn.append(noo)
-            questionn.append(option1[i])
-            questionn.append(option2[i])
-            questionn.append(option3[i])
-            questionn.append(option4[i])
-            questions.append(questionn)           
+            if typee[i]=="textarea" or typee[i] =="oneline":
+                noo=request.POST.get(no[i],None)
+                UserFormQuestion=Questions.objects.create(Form=formid,question=question[i],answer=noo,type=typee[i])
+            else:
+                noo=request.POST.getlist(no[i],None)
+                UserFormQuestion=Questions.objects.create(Form=formid,question=question[i],answer=noo,type=typee[i],option1=option1[i],option2=option2[i],option3=option3[i],option4=option4[i])        
             #saving question to mysql db           
-            UserFormQuestion=Questions.objects.create(Form=formid,question=question[i],answer=noo,type=typee[i],option1=option1[i],option2=option2[i],option3=option3[i],option4=option4[i])
             UserFormQuestion.save()       
             #returning to success page        
         messages.info(request,"Form Created Succesfully!")
-        return redirect('/',{'questions':questions,'formtitl':formtitl})
+        return redirect('/')
     else:
         return redirect('login')
 
@@ -110,7 +104,6 @@ def register(request):
             else:
                 user=User.objects.create_user(username=username,password=password1,email=email,first_name=first_name,last_name=last_name)
                 user.save()
-                print('User Created')
                 return redirect('login')
         else:
             messages.info(request,"Password not matching...")
@@ -186,11 +179,9 @@ def Save_Response(request):
         formids=Formtitle.objects.filter(User_id=request.user.id)
         responsecount=[]
         for x in formids:
-            print(x.id)
             cursor=collection.find({"User_id":str(request.user.id),"Form_id":str(x.id)})
             responsecount.append(cursor.count())
         myresponse=zip(formids,responsecount)
-        print(myresponse)
         return render(request,'Response.html',{'formids':formids,'responsecount':responsecount,'myresponse':myresponse})
     else:
         return redirect('login')
