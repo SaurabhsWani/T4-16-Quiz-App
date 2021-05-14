@@ -4,22 +4,32 @@
 {% comment %} <img src="{{x.img.url}}" weight=200px height=200px > {% endcomment %}
 
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Form Title: {{formtitl}}
-            <button type="button" name="add" id="addcheckbox" class="btn btn-info ml-auto btn-icon-split">
+    <div class="card-header py-3 ">
+        <h6><h2  class="m-0 h2 font-weight-bold text-primary">Form Title: {{formtitl}}</h2><br>
+            <button type="button" name="add" id="addcheckbox" class="btn btn-success ml-auto btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-check-square"></i>
                 </span>
-                <span class="text"> Add Multi-Answer Question</span>
+                <span class="text"> Multi-Answer Question</span>
             </button>
-            <button type="button" name="add" id="addradio" class="btn btn-info ml-auto btn-icon-split">
+            <button type="button" name="add" id="addradio" class="btn btn-warning ml-auto btn-icon-split">
                 <span class="icon text-white-50">
-                    <i class="fas fa-dot-circle"></i>
+                    <i class="fas fa-dot-circle "></i>
                 </span>
-                <span class="text">Add Single-Answer Question</span>
+                <span class="text">Single-Answer Question</span>
             </button>
-            <button type="button" name="add" id="addtextareaa" class="btn btn-success" >Add textarea</button>
-            <button type="button" name="add" id="adda" class="btn btn-success">Add single line input</button>
+            <button type="button" name="add" id="addtextarea" class="btn btn-info ml-auto btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-bars"></i>
+                </span>
+                <span class="text">Multiple-line-Answer Question</span>
+            </button>
+            <button type="button" name="add" id="add" class="btn btn-dark ml-auto btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-minus"></i>
+                </span>
+                <span class="text">Single-line-Answer Question</span>
+            </button>
         </h6>
     </div>
     <div class="card-body">

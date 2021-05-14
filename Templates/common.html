@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>QUIZ APP</title>
-
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/TechQuiz.webp' %}"/>
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %} " rel="stylesheet" type="text/css">
     
@@ -216,8 +216,8 @@
     $(document).ready(function(){
         var i=0;
         $('#addtextarea').click(function(){
-            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="hidden" name="type" value="textarea"><input type="text" name="question" placeholder="Enter your Question" class="form-control name_list" /><textarea type="textarea" name="answer" class="form-control" rows="3" placeholder="Enter word saperated by comma to be in answer"></textarea> </td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-            i++;
+            $('#dynamic_field').append('<tr id="row'+i+'"><td>Multi-Line-Answer Question<input type="hidden" name="type" value="textarea"><input type="hidden" name="no" value='+i+'><input type="text" name="question" placeholder="Enter your Question" class="form-control name_list" /><textarea type="text" name='+i+' class="form-control" rows="3" placeholder="Enter word saperated by comma to be in answer"></textarea> </td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            ++i;
             if ($('#submit').length > 0) {
             // Exists.
         }else{
@@ -227,8 +227,8 @@
         }            
     });
         $('#addradio').click(function(){
-            $('#dynamic_field').append('<tr id="row'+i+'"><td>Radio <input type="hidden" name="type" value="radio"><input type="hidden" name="no" value='+i+'><input type="text" name="question" placeholder="Enter your Question" class="form-control name_list mb-2" /><div class="row mb-2"><input type="radio" name='+i+' value="1" class="form-control col-1"/> <input type="text" name="option1" class="form-control col-10 "/></div><div class="row mb-2"><input type="radio" name='+i+' value="2" class="form-control col-1"/> <input type="text" name="option2" class="form-control col-10"/></div><div class="row mb-2"><input type="radio" name='+i+' value="3" class="form-control col-1"/> <input type="text" name="option3" class="form-control col-10"/></div><div class="row mb-2"><input type="radio" name='+i+' value="4" class="form-control col-1"/> <input type="text" name="option4" class="form-control col-10"/></div></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-            i++;
+            $('#dynamic_field').append('<tr id="row'+i+'"><td>Single-Answer Question <input type="hidden" name="type" value="radio"><input type="hidden" name="no" value='+i+'><input type="text" name="question" placeholder="Enter your Question" class="form-control name_list mb-2" /><div class="row mb-2"><input type="radio" name='+i+' value="1" class="form-control col-1"/> <input type="text" name="option1" class="form-control col-10 "/></div><div class="row mb-2"><input type="radio" name='+i+' value="2" class="form-control col-1"/> <input type="text" name="option2" class="form-control col-10"/></div><div class="row mb-2"><input type="radio" name='+i+' value="3" class="form-control col-1"/> <input type="text" name="option3" class="form-control col-10"/></div><div class="row mb-2"><input type="radio" name='+i+' value="4" class="form-control col-1"/> <input type="text" name="option4" class="form-control col-10"/></div></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            ++i;
             if ($('#submit').length > 0) {
             // Exists.
         }else{
@@ -238,8 +238,8 @@
         }
     });
         $('#addcheckbox').click(function(){
-            $('#dynamic_field').append('<tr id="row'+i+'"><td>checkbox<input type="hidden" name="type" value="checkbox"><input type="hidden" name="no" value='+i+'> <input type="text" name="question" placeholder="Enter your Question" class="form-control name_list mb-2" /><div class="row mb-2"><input type="checkbox" name="'+i+'" value="1" class="form-control col-1"/><input type="text" name="option1" class="form-control col-10 "/></div><div class="row mb-2"><input type="checkbox" name="'+i+'" value="2" class="form-control col-1"/> <input type="text" name="option2" class="form-control col-10"/></div><div class="row mb-2"><input type="checkbox" name="'+i+'" value="3" class="form-control col-1"/> <input type="text" name="option3" class="form-control col-10"/></div><div class="row mb-2"><input type="checkbox" name="'+i+'" value="4" class="form-control col-1"/> <input type="text" name="option4" class="form-control col-10"/></div></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-            i++;
+            $('#dynamic_field').append('<tr id="row'+i+'"><td>Multi-Answer Question<input type="hidden" name="type" value="checkbox"><input type="hidden" name="no" value='+i+'> <input type="text" name="question" placeholder="Enter your Question" class="form-control name_list mb-2" /><div class="row mb-2"><input type="checkbox" name="'+i+'" value="1" class="form-control col-1"/><input type="text" name="option1" class="form-control col-10 "/></div><div class="row mb-2"><input type="checkbox" name="'+i+'" value="2" class="form-control col-1"/> <input type="text" name="option2" class="form-control col-10"/></div><div class="row mb-2"><input type="checkbox" name="'+i+'" value="3" class="form-control col-1"/> <input type="text" name="option3" class="form-control col-10"/></div><div class="row mb-2"><input type="checkbox" name="'+i+'" value="4" class="form-control col-1"/> <input type="text" name="option4" class="form-control col-10"/></div></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            ++i;
             if ($('#submit').length > 0) {
             // Exists.
         }else{
@@ -249,8 +249,8 @@
         }
     });
         $('#add').click(function(){
-            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="hidden" name="type" value="oneline"><input type="text" name="question" placeholder="Enter your Question" class="form-control name_list" /><input type="text" name="answer" class="form-control" placeholder="Enter words saperated by comma to be in answer"/></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-            i++;
+            $('#dynamic_field').append('<tr id="row'+i+'"><td>Single-Line-Answer Question<input type="hidden" name="type" value="oneline"><input type="hidden" name="no" value='+i+'><input type="text" name="question" placeholder="Enter your Question" class="form-control name_list" /><input type="text" name='+i+' class="form-control" placeholder="Enter words saperated by comma to be in answer"/></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            ++i;
             if ($('#submit').length > 0) {
             // Exists.
         }else{

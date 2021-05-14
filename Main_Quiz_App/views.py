@@ -29,6 +29,10 @@ def ViewForm(request):
         id=request.GET.get('id')
         Formname=Formtitle.objects.filter(Form_Url=id)
         USerForm = Questions.objects.filter(Form_id=Formname[0].id)
+        # cursor=collection.find({"Response_User_id":request.user.first_name+" "+request.user.last_name,"Form_id":USerForm})
+        # if cursor.count()>0:            
+        #     messages.info(request,str(cursor.count())+" Response/s")
+        #     return render(request,'Response_Single.html',{'res':cursor,})            
         return render(request,'result.html',{'USerForm':USerForm,'Formname':Formname,'url':id})
     else:
         id=request.GET.get('id')
