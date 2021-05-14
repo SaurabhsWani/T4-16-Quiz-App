@@ -4,7 +4,7 @@ Firstly start your mysql,mongodb server
 Create database in mysql with name "SAM"
 
 run this commands
-'''python manage.py makemigrations
+"""python manage.py makemigrations
 '''python manage.py migrate
 '''pip install pymongo
 '''pip install secrets
